@@ -100,7 +100,7 @@ x = 0
 
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-fontsize=30
+fontsize=28
 font = ImageFont.truetype('Yoshis-Island.ttf', fontsize)
 
 
