@@ -100,7 +100,9 @@ x = 0
 
 # Alternatively load a TTF font.  Make sure the .ttf font file is in the same directory as the python script!
 # Some other nice fonts to try: http://www.dafont.com/bitmap.php
-font = ImageFont.truetype('Yoshis-Island.ttf', 20)
+fontsize=36
+font = ImageFont.truetype('Yoshis-Island.ttf', fontsize)
+
 
 while True:
 
@@ -113,8 +115,8 @@ while True:
 
     # Write two lines of text.
 
-    draw.text((x+10, top),       line1,  font=font, fill=255)
-    draw.text((x+10, top+20),       line2,  font=font, fill=255)
+    draw.text((x+20, top),       line1,  font=font, fill=255)
+    draw.text((x+20, top+fontsize),       line2,  font=font, fill=255)
 
 
     # Display image.
