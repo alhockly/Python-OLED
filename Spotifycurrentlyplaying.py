@@ -35,8 +35,8 @@ device = ssd1306(serial)
 Width=128
 Height=64
 
-scrollspeed=2
-scrollbackspeed=6
+scrollspeed=4
+scrollbackspeed=8
 songfontsize=18
 artistfontsize=15
 
@@ -180,7 +180,7 @@ class Seekthread(Thread):
 
 
     def run(self):
-        while self.end==False:
+        while True:
 
             diff=time.time()-self.lasttime
             self.lasttime=time.time()
@@ -192,7 +192,7 @@ class Seekthread(Thread):
                 self.end=True
             else:
                 self.end=False
-            time.sleep(.6)
+            time.sleep(1)
 
     def setcurrentpos(self,currentpos):
         self.currentpos=currentpos
@@ -225,10 +225,8 @@ if __name__ == "__main__":
         songscrollthread = Scrollthread(word=spotifyobj.track, fontsize=songfontsize, ypos=5)
         songscrollthread.start()
 
-
         artistscrollthread = Scrollthread(word=spotifyobj.artist, fontsize=artistfontsize, ypos=30)
         artistscrollthread.start()
-
 
         with canvas(device) as draw:
             songscrollthread.drawobj()
@@ -266,10 +264,12 @@ if __name__ == "__main__":
             seekthread.currentpos = spotifyobj.progressMs / 1000
             seekthread.isplaying = spotifyobj.isPlaying
 
+            if spotifyobj.progressMs<spotifyobj.durationMs:
+                seekthread.end=False
 
 
             while seekthread.end==False:                            ###while song is still playing. This could be while true with seekthread.end as an interrupt
-                print(threading.active_count(),"active threads")
+
                 with canvas(device) as draw:
                     songscrollthread.drawobj()
                     artistscrollthread.drawobj()
