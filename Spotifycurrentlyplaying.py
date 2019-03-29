@@ -252,11 +252,13 @@ if __name__ == "__main__":
                 pass
             print(spotifyobj)
 
-
-
+            songscrollthread.scrolling=False
+            songscrollthread.x=0
             songscrollthread.word=spotifyobj.track
             songscrollthread.calcscrolling()
 
+            artistscrollthread.scrolling = False
+            artistscrollthread.x = 0
             artistscrollthread.word = spotifyobj.artist
             artistscrollthread.calcscrolling()
 
@@ -288,7 +290,6 @@ if __name__ == "__main__":
                             break
                         else:
                             artistscrollthread.end = False
-
 
 
                     else:
